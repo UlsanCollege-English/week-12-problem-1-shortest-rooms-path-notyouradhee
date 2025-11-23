@@ -22,13 +22,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run autograding tests
-      id: tests
       run: python -m pytest tests/test_hw01.py -v --tb=short
-      continue-on-error: true
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      if: always()
-      env:
-        TESTS_RESULTS: "${{steps.tests.outcome}}"
-      with:
-        runners: tests
